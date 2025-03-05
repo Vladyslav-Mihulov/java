@@ -1,0 +1,78 @@
+package kolokwium2;
+
+abstract class Ship {
+    private String id;
+    private int pas;
+
+    public Ship(String id, int pas) {
+        this.id = id;
+        this.pas = pas;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public int getPas() {
+        return pas;
+    }
+
+    public void setPas(int pas) {
+        this.pas = pas;
+    }
+
+    public boolean czyZmieszci(int pas) {
+        return this.pas >= pas;
+    }
+
+    public String opis() {
+        return id + "\nPasazery: " + pas;
+    }
+}
+
+class Ferry extends Ship {
+    private String name = "Unknown";
+
+    public Ferry(String id, int pas) {
+        super(id, pas);
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public String opis() {
+        return super.opis() + "\nType: Ferry\nName: " + name;
+    }
+}
+
+class Cruise extends Ship {
+    private int basen;
+
+    public Cruise(String id, int pas, int basen) {
+        super(id, pas);
+        this.basen = basen;
+    }
+
+    @Override
+    public String opis() {
+        return super.opis() + "\nType: Cruise\nSwimming Pools: " + basen;
+    }
+}
+
+public class Kolokwium2 {
+    public static void main(String[] args) {
+        Ship ship;
+        int temp = 1;
+
+        if (temp == 1) {
+            ship = new Ferry("999", 1500);
+            ((Ferry) ship).setName("Titan");
+            System.out.println(ship.opis());
+        } else {
+            ship = new Cruise("111", 2000, 10);
+            System.out.println(ship.opis());
+        }
+    }
+}
